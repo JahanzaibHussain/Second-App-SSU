@@ -60,7 +60,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void displayPrice(int num){
+        String msg = "Total: ";
         TextView price = (TextView) findViewById(R.id.price);
-        price.setText(NumberFormat.getCurrencyInstance().format(num));
+        price.setText(msg + NumberFormat.getCurrencyInstance().format(num) + "\n Thank You!");
+
     }
 }
