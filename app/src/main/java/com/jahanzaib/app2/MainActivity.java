@@ -1,68 +1,31 @@
 package com.jahanzaib.app2;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
-
-import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
+
+    private final int SPLASH_DISPLAY_LENGTH = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+
+                /* Create an Intent that will start the Menu-Activity. */
+
+                Intent mainIntent = new Intent(MainActivity.this,Main2Activity.class);
+                MainActivity.this.startActivity(mainIntent);
+                MainActivity.this.finish();
+            }
+        }, SPLASH_DISPLAY_LENGTH);
     }
 
-    int numOfCoffees = 0;
 
-    /*TextView price = (TextView) findViewById(R.id.price);
-    TextView quantity = (TextView) findViewById(R.id.quantity);
-    Button inc  = (Button) findViewById(R.id.inc);
-    Button dec = (Button) findViewById(R.id.dec);
-    Button order = (Button) findViewById(R.id.order);
-*/
-
-
-    public void increment(View view){
-        numOfCoffees = numOfCoffees + 1;
-        display(numOfCoffees);
-
-    }
-
-    public void decrement(View view){
-        numOfCoffees = numOfCoffees - 1;
-        if ( numOfCoffees > 0){
-            display(numOfCoffees);
-        } else {
-            numOfCoffees = 0;
-            display(numOfCoffees);
-        }
-/*
-
-        display(numOfCoffees);
-        if (0 == numOfCoffees ){
-            numOfCoffees = 0;
-            display(numOfCoffees);
-        }
-*/
-    }
-
-    public void submitOrder(View view){
-        display(numOfCoffees);
-        displayPrice( numOfCoffees * 6);
-    }
-
-    public void display(int num){
-        TextView quantity = (TextView) findViewById(R.id.quantities);
-        quantity.setText("" + num);
-    }
-
-    public void displayPrice(int num){
-        String msg = "Total: ";
-        TextView price = (TextView) findViewById(R.id.price);
-        price.setText(msg + NumberFormat.getCurrencyInstance().format(num) + "\n Thank You!");
-
-    }
 }
